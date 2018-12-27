@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 import BookShelfChanger from './BookShelfChanger';
 
 const Book = props => {
-  const { id, title, authors, shelf, averageRating, ratingsCount, imageLinks } = props.book;
+  const { title, authors, shelf, averageRating, ratingsCount, imageLinks } = props.book;
 
   return (
     <li>
@@ -13,7 +13,7 @@ const Book = props => {
           <img className='book-cover' src={imageLinks.thumbnail} alt={title}/>
           <BookShelfChanger
             shelfChanger={props.shelfChanger}
-            bookId={id}
+            book={props.book}
             shelf={shelf}/>
         </div>
         <div className='book-title'>{title}</div>

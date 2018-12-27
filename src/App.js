@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom';
 
 import './App.css'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './apis/BooksAPI';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 
@@ -15,17 +15,22 @@ class BooksApp extends React.Component {
     confirmShelfChange: true
   }
 
-  shelfChanger = (event, bookId) => {
+  shelfChanger = (event, book) => {
     const newShelf = event.target.value;
-    console.log('shelf changer', newShelf, bookId);
-    this.setState((prevState) => ({
-      books: prevState.books.map((book) => {
-        if (book.id === bookId) {
-          book.shelf = newShelf
-        }
-        return book;
-      })
-    }));
+    const id = book.id;
+
+    console.log('shelf changer', newShelf, id);
+    BooksAPI.update(book, newShelf)
+      .then((res) => {
+        this.setState((prevState) => ({
+          books: prevState.books.map((book) => {
+            if (book.id === id) {
+              book.shelf = newShelf
+            }
+            return book;
+          })
+        }));
+      });
   }
 
   componentDidMount() {
