@@ -34,13 +34,15 @@ class BooksApp extends React.Component {
     console.log('shelf changer', event.target.value);
   }
 
+  getBooksByShelf = (shelf) => (
+    this.state.books ? this.state.books.filter((book) => book.shelf === shelf) : []
+  )
+
   componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
         this.setState({
-          wantToRead: books.filter((book) => book.shelf === 'wantToRead'),
-          read: books.filter((book) => book.shelf === 'read'),
-          currentlyReading: books.filter((book) => book.shelf === 'currentlyReading'),
+          books: books
         }, () => console.log(this.state));
       });
   }
@@ -67,7 +69,7 @@ class BooksApp extends React.Component {
                   <BookShelf
                     key={shelf.id}
                     title={shelf.title}
-                    books={this.state[shelf.id]}
+                    books={this.getBooksByShelf(shelf.id)}
                     shelfChanger={this.shelfChanger}/>
                 )
               }
