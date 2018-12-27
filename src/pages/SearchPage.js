@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as BooksAPI from '../apis/BooksAPI';
 import SearchBar from '../components/SearchBar';
@@ -18,7 +19,7 @@ class SearchPage extends React.Component {
         console.log('=======> res', res);
 
         this.setState({
-          results: res.error ? [] : res
+          results: res && res.error ? [] : res
         })
       });
   }
@@ -34,6 +35,10 @@ class SearchPage extends React.Component {
       </div>
     );
   }
+}
+
+SearchPage.propTypes = {
+  shelfChanger: PropTypes.func.isRequired
 }
 
 export default SearchPage;

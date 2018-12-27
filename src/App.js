@@ -7,6 +7,12 @@ import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 
 class BooksApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: []
+    }
+  }
 
   shelfChanger = (event, book) => {
     const newShelf = event.target.value;

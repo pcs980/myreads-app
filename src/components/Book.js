@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StarRatings from 'react-star-ratings';
 
 import BookShelfChanger from './BookShelfChanger';
@@ -32,6 +33,11 @@ const Book = props => {
       </div>
     </li>
   );
+}
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  shelfChanger: PropTypes.func.isRequired
 }
 
 export default Book;

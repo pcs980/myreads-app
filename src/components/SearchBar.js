@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class SearchBar extends React.Component{
@@ -33,6 +34,10 @@ class SearchBar extends React.Component{
       </div>
     );
   }
+}
+
+SearchBar.propTypes = {
+  onSearchBooks: PropTypes.func.isRequired
 }
 
 export default SearchBar;
