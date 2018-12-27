@@ -1,13 +1,12 @@
 import React from 'react';
 
 import SearchBar from '../components/SearchBar';
+import SearchResult from '../components/SearchResult';
 
 const SearchPage = props => (
   <div className="search-books">
     <SearchBar />
-    <div className="search-books-results">
-      <ol className="books-grid"></ol>
-    </div>
+    <SearchResult />
   </div>
 );
 
