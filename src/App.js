@@ -18,8 +18,17 @@ class BooksApp extends React.Component {
     confirmShelfChange: true
   }
 
-  shelfChanger = (event, book) => {
-    console.log('shelf changer', event.target.value, book);
+  shelfChanger = (event, bookId) => {
+    const newShelf = event.target.value;
+    console.log('shelf changer', newShelf, bookId);
+    this.setState((prevState) => ({
+      books: prevState.books.map((book) => {
+        if (book.id === bookId) {
+          book.shelf = newShelf
+        }
+        return book;
+      })
+    }))
   }
 
   componentDidMount() {
