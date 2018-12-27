@@ -1,15 +1,10 @@
 import React from 'react'
+import { Route } from 'react-router-dom';
+
 import './App.css'
-
 import * as BooksAPI from './BooksAPI'
-import BookShelf from './components/BookShelf';
-import SearchBar from './components/SearchBar';
-
-const shelfs = [
-  {title: 'Currently Reading', id: 'currentlyReading'},
-  {title: 'Read', id: 'read'},
-  {title: 'Want to Read', id: 'wantToRead'}
-];
+import HomePage from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
 
 class BooksApp extends React.Component {
 
@@ -20,7 +15,6 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
     confirmShelfChange: true
   }
 
@@ -50,35 +44,14 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <div className="search-books">
-            <SearchBar
-              toggleSearchBar={this.toggleSearchBar}/>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
-        ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              {
-                shelfs.map((shelf) =>
-                  <BookShelf
-                    key={shelf.id}
-                    title={shelf.title}
-                    books={this.getBooksByShelf(shelf.id)}
-                    shelfChanger={this.shelfChanger}/>
-                )
-              }
-            </div>
-            <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-            </div>
-          </div>
-        )}
+        <Route path='/' exact render={() => (
+          <HomePage
+            shelfChanger={this.shelfChanger}
+            books={this.state.books} />
+        )} />
+        <Route path='/search' render={() => (
+          <SearchPage />
+        )} />
       </div>
     )
   }
