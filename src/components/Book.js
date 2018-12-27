@@ -17,7 +17,7 @@ const Book = props => {
             shelf={shelf}/>
         </div>
         <div className='book-title'>{title}</div>
-        {authors.map((author) => <div key={author} className='book-authors'>{author}</div>)}
+        {authors && authors.map((author) => <div key={author} className='book-authors'>{author}</div>)}
         {averageRating &&
           <div className='book-rating'>
             <StarRatings
