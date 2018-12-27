@@ -11,14 +11,18 @@ const Book = props => {
     <li>
       <div className='book'>
         <div className='book-top'>
+        {imageLinks &&
           <img className='book-cover' src={imageLinks.thumbnail} alt={title}/>
+        }
           <BookShelfChanger
             shelfChanger={props.shelfChanger}
             book={props.book}
             shelf={shelf}/>
         </div>
         <div className='book-title'>{title}</div>
-        {authors && authors.map((author) => <div key={author} className='book-authors'>{author}</div>)}
+        {authors &&
+          authors.map((author) => <div key={author} className='book-authors'>{author}</div>)
+        }
         {averageRating &&
           <div className='book-rating'>
             <StarRatings

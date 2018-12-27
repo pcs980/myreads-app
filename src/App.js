@@ -18,7 +18,6 @@ class BooksApp extends React.Component {
     const newShelf = event.target.value;
     const id = book.id;
 
-    console.log('shelf changer', newShelf, id);
     BooksAPI.update(book, newShelf)
       .then((res) => {
         this.setState((prevState) => ({
@@ -51,6 +50,7 @@ class BooksApp extends React.Component {
         )} />
         <Route path='/search' render={() => (
           <SearchPage
+            books={this.state.books}
             shelfChanger={this.shelfChanger}/>
         )} />
       </div>

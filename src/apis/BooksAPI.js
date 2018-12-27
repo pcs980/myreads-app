@@ -38,10 +38,5 @@ export const search = (query) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ query })
-  }).then(res => {
-    console.log('=====>', res);
-    return res.json()
-  }).then(data => {
-    console.log('=====>', data);
-    return data.books
-  });
+  }).then(res => res.json())
+    .then(data => data.books);

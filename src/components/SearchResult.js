@@ -4,17 +4,20 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 const SearchResult = props => {
-  const { results, shelfChanger } = props;
+  const { results, books, shelfChanger } = props;
 
   let renderResults = null;
   if (results) {
     if (results.length > 0) {
-      renderResults = results.map((book) => (
-        <Book
+      renderResults = results.map((result) => {
+        const knownBook = books.filter((book) => result.id === book.id);
+        result.shelf = knownBook.length > 0 ? knownBook[0].shelf : 'none';
+
+        return (<Book
           shelfChanger={shelfChanger}
-          key={book.id}
-          book={book}/>
-      ));
+          key={result.id}
+          book={result}/>
+      )});
     } else {
       renderResults = <div>No book found!</div>
     }
@@ -32,6 +35,7 @@ const SearchResult = props => {
 }
 
 SearchResult.propTypes = {
+  books: PropTypes.array.isRequired,
   results: PropTypes.array,
   shelfChanger: PropTypes.func.isRequired
 }

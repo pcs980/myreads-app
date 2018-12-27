@@ -28,6 +28,7 @@ class SearchPage extends React.Component {
         <SearchBar
           onSearchBooks={(query) => this.searchBooks(query)}/>
         <SearchResult
+          books={this.props.books}
           shelfChanger={this.props.shelfChanger}
           results={this.state.results}/>
       </div>
