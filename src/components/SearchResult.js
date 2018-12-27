@@ -3,21 +3,36 @@ import PropTypes from 'prop-types';
 
 import Book from './Book';
 
-const SearchResult = props => (
-  <div className='search-books-results'>
-    <ol className='books-grid'>
-      {props.results && props.results.map((book) => (
+const SearchResult = props => {
+  const { results, shelfChanger } = props;
+
+  let renderResults = null;
+  if (results) {
+    if (results.length > 0) {
+      renderResults = results.map((book) => (
         <Book
-          shelfChanger={props.shelfChanger}
+          shelfChanger={shelfChanger}
           key={book.id}
           book={book}/>
-      ))}
-    </ol>
-  </div>
-);
+      ));
+    } else {
+      renderResults = <div>No book found!</div>
+    }
+  } else {
+    renderResults = <div>Start typing!</div>
+  }
+
+  return (
+    <div className='search-books-results'>
+      <ol className='books-grid'>
+        {renderResults}
+      </ol>
+    </div>
+  );
+}
 
 SearchResult.propTypes = {
-  results: PropTypes.array.isRequired,
+  results: PropTypes.array,
   shelfChanger: PropTypes.func.isRequired
 }
 

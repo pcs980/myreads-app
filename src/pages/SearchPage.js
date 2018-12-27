@@ -9,15 +9,13 @@ class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: []
+      results: null
     };
   }
 
   searchBooks = (query) => {
     BooksAPI.search(query)
       .then((res) => {
-        console.log('=======> res', res);
-
         this.setState({
           results: res && res.error ? [] : res
         })
