@@ -18,19 +18,9 @@ class BooksApp extends React.Component {
     confirmShelfChange: true
   }
 
-  toggleSearchBar = () => {
-    this.setState((prevState) => ({
-      showSearchPage: !prevState.showSearchPage
-    }));
-  }
-
   shelfChanger = (event, book) => {
-    console.log('shelf changer', event.target.value);
+    console.log('shelf changer', event.target.value, book);
   }
-
-  getBooksByShelf = (shelf) => (
-    this.state.books ? this.state.books.filter((book) => book.shelf === shelf) : []
-  )
 
   componentDidMount() {
     BooksAPI.getAll()

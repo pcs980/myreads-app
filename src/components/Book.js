@@ -3,31 +3,36 @@ import StarRatings from 'react-star-ratings';
 
 import BookShelfChanger from './BookShelfChanger';
 
-const Book = props => (
-  <li>
-    <div className="book">
-      <div className="book-top">
-        <img className="book-cover" src={props.cover} alt={props.title}/>
-        <BookShelfChanger
-          shelfChanger={props.shelfChanger}
-          shelf={props.shelf}/>
-      </div>
-      <div className="book-title">{props.title}</div>
-      {props.authors.map((author) => <div key={author} className="book-authors">{author}</div>)}
-      {props.rating &&
-        <div className="book-rating">
-          <StarRatings
-            rating={props.rating}
-            starRatedColor="black"
-            starDimension="12px"
-            starSpacing="1px"
-            numberOfStars={5}
-            name='rating'/>({props.ratingCount})
+const Book = props => {
+  const { id, title, authors, shelf, averageRating, ratingsCount, imageLinks } = props.book;
+
+  return (
+    <li>
+      <div className="book">
+        <div className="book-top">
+          <img className="book-cover" src={imageLinks.thumbnail} alt={title}/>
+          <BookShelfChanger
+            shelfChanger={props.shelfChanger}
+            bookId={id}
+            shelf={shelf}/>
         </div>
-      }
-    </div>
-  </li>
-);
+        <div className="book-title">{props.title}</div>
+        {authors.map((author) => <div key={author} className="book-authors">{author}</div>)}
+        {averageRating &&
+          <div className="book-rating">
+            <StarRatings
+              rating={averageRating}
+              starRatedColor="black"
+              starDimension="12px"
+              starSpacing="1px"
+              numberOfStars={5}
+              name='rating'/>({ratingsCount})
+          </div>
+        }
+      </div>
+    </li>
+  );
+}
 
 export default Book;
 
