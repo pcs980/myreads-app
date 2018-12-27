@@ -8,13 +8,6 @@ import SearchPage from './pages/SearchPage';
 
 class BooksApp extends React.Component {
 
-  state = {
-    /**
-     * TODO: Ask before shelf changing.
-     */
-    confirmShelfChange: true
-  }
-
   shelfChanger = (event, book) => {
     const newShelf = event.target.value;
     const id = book.id;

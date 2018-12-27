@@ -37,6 +37,8 @@ const Book = props => {
 export default Book;
 
 /*
+Example of book item
+
 allowAnonLogging: true
 authors: Array[1]
   0: 'William E. Shotts, Jr.'
