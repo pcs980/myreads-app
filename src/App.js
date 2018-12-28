@@ -30,7 +30,6 @@ class BooksApp extends React.Component {
             return book;
           })
         }), () => {
-          console.log('toasting???');
           this.notify();
           this.getBooks();
         });
