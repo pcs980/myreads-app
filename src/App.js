@@ -27,16 +27,20 @@ class BooksApp extends React.Component {
             }
             return book;
           })
-        }));
+        }), () => this.getBooks());
       });
   }
 
   componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks = () => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState({
           books: books
-        }, () => console.log(this.state));
+        });
       });
   }
 
