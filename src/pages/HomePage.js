@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import BookShelf from '../components/BookShelf';
 
@@ -36,6 +37,11 @@ const HomePage = props => {
       </div>
     </div>
   );
-
 }
+
+HomePage.propTypes = {
+  books: PropTypes.array.isRequired,
+  shelfChanger: PropTypes.func.isRequired
+}
+
 export default HomePage;
