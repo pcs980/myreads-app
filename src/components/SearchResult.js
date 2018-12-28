@@ -19,10 +19,10 @@ const SearchResult = props => {
           book={result}/>
       )});
     } else {
-      renderResults = <div>No book found!</div>
+      renderResults = <div>Sorry, bo book found!</div>
     }
   } else {
-    renderResults = <div>Start typing!</div>
+    renderResults = <div>Please, start typing!</div>
   }
 
   return (
