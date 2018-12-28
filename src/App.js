@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css'
 import * as BooksAPI from './apis/BooksAPI';
@@ -27,13 +29,23 @@ class BooksApp extends React.Component {
             }
             return book;
           })
-        }), () => this.getBooks());
+        }), () => {
+          console.log('toasting???');
+          this.notify();
+          this.getBooks();
+        });
       });
   }
 
   componentDidMount() {
     this.getBooks();
   }
+
+  notify = () => toast.info('Book moved sucessfully!', {
+    autoClose: 3000,
+    hideProgressBar: true,
+    pauseOnHover: false
+  });
 
   getBooks = () => {
     BooksAPI.getAll()
@@ -57,6 +69,7 @@ class BooksApp extends React.Component {
             books={this.state.books}
             shelfChanger={this.shelfChanger}/>
         )} />
+        <ToastContainer />
       </div>
     )
   }
